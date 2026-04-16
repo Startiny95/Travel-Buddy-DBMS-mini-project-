@@ -35,13 +35,13 @@ const quickActions = [
     glow: "rgba(245,158,11,0.3)",
   },
   {
-    icon: "📤",
-    label: "Import Timeline",
-    desc: "Upload Google Takeout data",
-    href: "/import",
-    color: "#ec4899",
-    glow: "rgba(236,72,153,0.3)",
-  },
+  icon: "📍",
+  label: "Places Near Me",
+  desc: "Explore within 5km radius",
+  href: "/nearby",
+  color: "#10b981",
+  glow: "rgba(16,185,129,0.3)",
+ },
 ];
 
 export default function HomePage() {

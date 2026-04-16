@@ -444,6 +444,60 @@ export default function PlanTripPage() {
           margin: 24px 0;
         }
 
+        /* added from gemini*/
+        .attractions-section {
+  margin-top: 40px;
+  animation: fadeUp 0.5s ease 0.2s both;
+}
+
+.section-title {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  color: #10b981;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.attractions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.attraction-item {
+  background: rgba(16, 185, 129, 0.03);
+  border: 1px solid rgba(16, 185, 129, 0.1);
+  border-radius: 12px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.attr-info h4 {
+  font-size: 15px;
+  font-weight: 600;
+  color: #f1f5f9;
+}
+
+.attr-info p {
+  font-size: 11px;
+  color: rgba(200, 210, 230, 0.4);
+}
+
+.attr-tag {
+  font-size: 10px;
+  background: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
         @keyframes fadeUp {
           from { opacity: 0; transform: translateY(16px); }
           to { opacity: 1; transform: translateY(0); }
@@ -614,6 +668,45 @@ export default function PlanTripPage() {
                             })}
                         </div>
                     )}
+                    {/* Results Attractions Section */}
+{results && results.attractions && (
+    <div className="attractions-section">
+        <h3 className="section-title">✨ Recommended Stops in {destination}</h3>
+        {results.attractions.destination.length > 0 ? (
+            <div className="attractions-list">
+                {results.attractions.destination.map((attr, idx) => (
+                    <div key={idx} className="attraction-item">
+                        <div className="attr-info">
+                            <h4>{attr.name}</h4>
+                            <p>{attr.category || "Point of Interest"}</p>
+                        </div>
+                        <span className="attr-tag">POI</span>
+                    </div>
+                ))}
+            </div>
+        ) : (
+            <p className="page-sub">No major attractions found nearby.</p>
+        )}
+        
+        {/* If multi-leg, show midpoint attractions too */}
+        {useMultiLeg && results.attractions.midpoint.length > 0 && (
+            <>
+                <h3 className="section-title" style={{marginTop: '30px'}}>✨ Explore {midpoint} while you're there</h3>
+                <div className="attractions-list">
+                    {results.attractions.midpoint.map((attr, idx) => (
+                        <div key={idx} className="attraction-item">
+                            <div className="attr-info">
+                                <h4>{attr.name}</h4>
+                                <p>{attr.category || "Point of Interest"}</p>
+                            </div>
+                            <span className="attr-tag">Stopover</span>
+                        </div>
+                    ))}
+                </div>
+            </>
+        )}
+    </div>
+)}
                 </main>
             </div>
         </>
