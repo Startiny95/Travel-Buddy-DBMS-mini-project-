@@ -3,9 +3,9 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 
 const stats = [
-  { label: "Trips Taken", value: "0", icon: "✈️" },
-  { label: "Cities Visited", value: "0", icon: "🏙️" },
-  { label: "Km Travelled", value: "0", icon: "🛣️" },
+  { label: "Trips Taken", value: "6", icon: "✈️" },
+  { label: "Cities Visited", value: "8", icon: "🏙️" },
+  { label: "Km Travelled", value: "1,995", icon: "🛣️" },
   { label: "Photos Saved", value: "0", icon: "📷" },
 ];
 
